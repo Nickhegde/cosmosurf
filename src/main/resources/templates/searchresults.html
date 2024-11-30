@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Search Results</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Search Results for "<span th:text="${searchTerm}"></span>"</h1>
+        
+        <!-- Check if there are any results -->
+        <div th:if="${#lists.isEmpty(searchResults)}">
+            <p>No results found for "<span th:text="${searchTerm}"></span>".</p>
+        </div>
+
+        <!-- Display the search results -->
+        <ul class="list-group" th:if="${not #lists.isEmpty(searchResults)}">
+            <li class="list-group-item" th:each="webPage : ${searchResults}">
+                <a th:href="${webPage.url}" th:text="${webPage.url}" target="_blank"></a><br>
+                <span th:text="${webPage.description}"></span>
+            </li>
+        </ul>
+
+        <!-- Back to Home button -->
+        <a href="/" class="btn btn-primary mt-4">Back to Home</a>
+    </div>
+</body>
+</html>

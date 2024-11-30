@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>KWIC Lexical Sort - Team Cosmosurf</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        h1 {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>KWIC Lexical Sort</h1>
+        <form method="GET" action="/kwic">
+            <div class="form-group">
+                <label for="sentence">Input Sentence:</label>
+                <input type="text" id="sentence" name="sentence" class="form-control" required />
+            </div>
+            <input type="submit" value="Submit" class="btn btn-primary" />
+        </form>
+
+        <hr />
+
+        <!-- Button to retrieve all stored sentences -->
+        <form action="/allEntries" method="get">
+            <button type="submit" class="btn btn-secondary mt-2">View All Stored Sentences</button>
+        </form>
+
+        <hr />
+
+        <!-- Search form -->
+        <h2>Search</h2>
+        <form method="GET" action="/search">
+            <div class="form-group">
+                <label for="word">Enter Word to Search:</label>
+                <input type="text" id="word" name="keyword" class="form-control" required />
+            </div>
+            <input type="submit" value="Search" class="btn btn-success" />
+        </form>
+    </div>
+</body>
+</html>

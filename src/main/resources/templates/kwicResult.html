@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>KWIC Result</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .hidden {
+            display: none;
+        }
+        .result-section {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>KWIC Results for: <span th:text="${sentence}"></span></h1>
+
+        <div class="mt-4">
+            <h2>View Options</h2>
+            <button class="btn btn-secondary" onclick="showSection('circularShifts')">Show Circular Shifts</button>
+            <button class="btn btn-secondary" onclick="showSection('sortedShifts')">Show Sorted Shifts</button>
+        </div>
+
+        <div id="circularShifts" class="result-section">
+            <h2>Circular Shifts</h2>
+            <ul class="list-group">
+                <li class="list-group-item" th:each="shift : ${shifts}" th:text="${shift.shiftedSentence}"></li>
+            </ul>
+        </div>
+
+        <div id="sortedShifts" class="result-section hidden">
+            <h2>Sorted Shifts</h2>
+            <ul class="list-group">
+                <li class="list-group-item" th:each="sortedShift : ${sortedShifts}" th:text="${sortedShift.shiftedSentence}"></li>
+            </ul>
+        </div>
+
+        <form action="/kwic" method="get" class="mt-4">
+            <div class="form-group">
+                <label for="sentence">Enter a new sentence:</label>
+                <input type="text" id="sentence" name="sentence" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        // Function to show selected result section and hide the other
+        function showSection(sectionId) {
+            document.getElementById('circularShifts').classList.add('hidden');
+            document.getElementById('sortedShifts').classList.add('hidden');
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
